@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Panel - YAATRI</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #111;
+      color: white;
+      padding: 2rem;
+    }
+    form {
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    input, textarea, select, button {
+      padding: 0.75rem;
+      font-size: 1rem;
+      border-radius: 5px;
+      border: none;
+    }
+    button {
+      background: #fc036b;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background: white;
+      color: #fc036b;
+    }
+  </style>
+</head>
+<body>
+  <h1>Add Travel Entry</h1>
+  <form id="travelForm">
+    <input id="title" placeholder="Title" required />
+    <textarea id="description" placeholder="Description" required></textarea>
+    <input id="image" placeholder="Image URL (e.g., img/img1.jfif)" required />
+    <select id="category" required>
+      <option value="">Select Category</option>
+      <option value="event">Event</option>
+      <option value="tour">Tour</option>
+    </select>
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    const form = document.getElementById('travelForm');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const entry = {
+        title: document.getElementById('title').value,
+        description: document.getElementById('description').value,
+        image: document.getElementById('image').value,
+        category: document.getElementById('category').value
+      };
+
+      try {
+        const res = await fetch('http://localhost:5000/api/travel', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(entry)
+        });
+
+        if (res.ok) {
+          alert('✅ Entry added!');
+          form.reset();
+        } else {
+          alert('❌ Failed to add entry.');
+        }
+      } catch (err) {
+        alert('🚫 Could not connect to backend.');
+        console.error(err);
+      }
+    });
+  </script>
+</body>
+</html>
