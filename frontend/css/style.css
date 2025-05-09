@@ -418,7 +418,7 @@ section {
   background-color: #ffff;
   padding: 0.2em 0.5em;
   color: #222;
-  height: 12em;
+  height: em;
   width: 10em;
   border-radius: 5px;
   margin: 1.5em 0.5em;
@@ -845,7 +845,7 @@ body.dark{
   background: linear-gradient(45deg, #4e56f8, #fff, #41031d);
   background-repeat: no-repeat;
   background-size: 80%;
-  animation: animate 8s linear infinite;
+  animation: animate 9s linear infinite;
   -webkit-background-clip: text;
   -webkit-text-fill-color: rgba(255, 255, 255, 0);
 }
